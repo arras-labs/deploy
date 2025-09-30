@@ -1,10 +1,25 @@
-# Project Template
+# Deploy
 
-This repository provides a minimal, pragmatic template:
-- British English across docs and messages
-- GitHub Actions CI
-- CODEOWNERS, PR/Issue templates
-- Dependabot
+## Overview
+Operational repository to run the full system locally and define staging/production manifests.
 
-## Getting started
-Clone, create your feature branch, and raise a pull request.
+## Scope
+- Local development via Docker Compose
+- Environment configuration
+- Production manifests (e.g., Kubernetes/Helm)
+
+## Structure
+- `compose/` local Docker Compose files
+- `k8s/` base and overlays for environments (to be added)
+- `docs/` operational notes
+
+## Local run
+- Copy `compose/.env.example` to `compose/.env` and adjust values
+- Build and run from source repositories:
+  `docker compose -f compose/docker-compose.dev.yml up --build`
+
+## CI
+Can validate manifests and compose files. Extend as the platform evolves.
+
+## Secrets
+Do not commit secrets. Use environment-specific stores or platform secret managers.
