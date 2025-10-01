@@ -1,25 +1,25 @@
 # Deploy
 
-## Overview
-Operational repository to run the full system locally and define staging/production manifests.
+## Purpose
+Run the full system locally and define deployment manifests for staging/production.
 
-## Scope
-- Local development via Docker Compose
+## Responsibilities
+- Local Docker Compose to run `web-app` + `backend-api` (and a chain RPC if needed)
 - Environment configuration
-- Production manifests (e.g., Kubernetes/Helm)
+- Future: Kubernetes/Helm overlays
 
-## Structure
-- `compose/` local Docker Compose files
-- `k8s/` base and overlays for environments (to be added)
-- `docs/` operational notes
+## Interactions with other repositories
+- **web-app** / **backend-api**: builds/images referenced by compose/manifests
+- **contracts**: provides addresses/ABIs referenced by services
 
-## Local run
-- Copy `compose/.env.example` to `compose/.env` and adjust values
-- Build and run from source repositories:
-  `docker compose -f compose/docker-compose.dev.yml up --build`
+## Local run (development)
+1. Copy `compose/.env.example` to `compose/.env` and adjust values
+2. Build from sources and run:
+docker compose -f compose/docker-compose.dev.yml up --build
 
-## CI
-Can validate manifests and compose files. Extend as the platform evolves.
+## Environments
+- **dev** (local compose)
+- **staging** (TBD)
+- **production** (TBD)
 
-## Secrets
-Do not commit secrets. Use environment-specific stores or platform secret managers.
+See `SYSTEM-OVERVIEW.md` for the end-to-end diagram.
